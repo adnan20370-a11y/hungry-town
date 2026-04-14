@@ -58,44 +58,50 @@
         <div class="order-form-container">
             <form id="orderForm">
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Enter your full name" required>
-                </div>
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter your full name" required>
+</div>
 
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <input type="tel" name="mobile" placeholder="Enter mobile number" required>
-                </div>
+<div class="form-group">
+    <label>Mobile Number</label>
+    <input type="tel" name="mobile" placeholder="Enter mobile number" required>
+</div>
 
-                <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" name="address" placeholder="Enter delivery address" required>
-                </div>
+<div class="form-group">
+    <label>Address</label>
+    <input type="text" name="address" placeholder="Enter delivery address" required>
+</div>
 
-                <div class="form-group">
-                    <label>Order Details</label>
-                    <textarea name="order" rows="4" placeholder="Please order with item number (e.g., 1x No. 5, 2x No. 12)" required></textarea>
-                </div>
+<div class="form-group">
+    <label>Coupon Code (Optional)</label>
+    <input type="text" name="cupon_code" placeholder="Enter code here if you have one">
+</div>
 
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea name="message" rows="3" placeholder="Any special instructions?"></textarea>
-                </div>
+<div class="form-group">
+    <label>Order Details</label>
+    <textarea name="order" rows="4" placeholder="Please order with item number (e.g., 1x No. 5, 2x No. 12)" required></textarea>
+</div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Place Order</button>
+<div class="form-group">
+    <label>Message</label>
+    <textarea name="message" rows="3" placeholder="Any special instructions?"></textarea>
+</div>
+
+<button type="submit" class="submit-btn" id="submitBtn">Place Order</button>
+
             </form>
             <p id="successMsg">Order placed successfully! We will call you shortly.</p>
         </div>
     </div>
 
-    <script>
+   <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
 
-        // GOOGLE SHEETS SCRIPT INTEGRATION
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbw4GGz41LfMmOgYr8ZQQmChR58nPWa3MO8dUbTs6QuugVX9l1-oOWuFExQ8Numev7tgNg/exec';
+        // --- NEW GOOGLE SHEETS SCRIPT ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzVvAdKgM1_O8MbUgfvGmEJ_yXhcF_fbVI30UdOTpDnEmxcQ8gvOqFIjxrmFt8HAHdaUw/exec';
         const form = document.getElementById('orderForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMsg = document.getElementById('successMsg');
@@ -105,12 +111,14 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "Processing...";
 
+            // This line automatically grabs ALL fields, including 'cupon_code'
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
                     successMsg.style.display = "block";
                     form.reset();
                     submitBtn.disabled = false;
                     submitBtn.innerText = "Place Order";
+                    // Hide success message after 5 seconds
                     setTimeout(() => { successMsg.style.display = "none"; }, 5000);
                 })
                 .catch(error => {
