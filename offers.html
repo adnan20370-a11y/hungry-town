@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers | Hungry Town</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #fff; font-family: 'Poppins', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+        /* Navbar */
+        .navbar { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1001; flex-wrap: nowrap; }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; white-space: nowrap; display: flex; gap: 5px; }
+        .logo span { color: #c5a059; }
+
+        .menu-toggle { display: block; cursor: pointer; color: #c5a059; font-size: 1.8rem; background: none; border: none; }
+
+        .nav-links { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: #111; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 25px; transition: 0.4s ease; z-index: 1000; list-style: none; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+        .nav-links.active { right: 0; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 1.1rem; text-transform: uppercase; }
+        .close-menu { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #c5a059; cursor: pointer; }
+
+        /* Offers Section */
+        .offers-container { padding: 60px 5%; text-align: center; }
+        .offers-container h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #c5a059; margin-bottom: 10px; }
+        .subtitle { color: #888; margin-bottom: 40px; }
+
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+
+        .offer-card { background: #151515; border: 1px solid #222; border-radius: 12px; padding: 30px; position: relative; overflow: hidden; transition: 0.3s; }
+        .offer-card:hover { border-color: #c5a059; transform: translateY(-5px); }
+
+        .discount-tag { background: #c5a059; color: #000; font-weight: 700; padding: 5px 15px; border-radius: 0 0 0 12px; position: absolute; top: 0; right: 0; font-size: 0.8rem; }
+
+        .offer-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin: 15px 0 10px; }
+        .offer-card p { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .promo-code { border: 1px dashed #c5a059; color: #c5a059; padding: 10px; font-weight: 600; font-size: 1.1rem; display: block; margin-bottom: 15px; }
+
+        .btn-order { display: inline-block; background: #c5a059; color: #000; padding: 10px 25px; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s; }
+        .btn-order:hover { background: #e0b970; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">HUNGRY <span>TOWN</span></a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <span class="close-menu" onclick="toggleMenu()">×</span>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="offers.html" style="color: #c5a059;">Offers</a></li>
+            <li><a href="order.html">Your Order</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="offers-container">
+        <h1>Special Offers</h1>
+        <p class="subtitle">Delicious deals just for you in Pollibiddut</p>
+
+        <div class="offer-grid">
+            <div class="offer-card">
+                <div class="discount-tag">15% OFF</div>
+                <h3>Welcome Deal</h3>
+                <p>Get 15% discount on your first order over 500 BDT.</p>
+                <span class="promo-code">CODE: HELLOHT</span>
+                <a href="order.html" class="btn-order">Order Now</a>
+            </div>
+
+            <div class="offer-card">
+                <div class="discount-tag">FREE ITEM</div>
+                <h3>Family Feast</h3>
+                <p>Order 4 main courses and get 1 Large Coke absolutely free!</p>
+                <span class="promo-code">CODE: FAMILYCOKE</span>
+                <a href="order.html" class="btn-order">Order Now</a>
+            </div>
+
+            <div class="offer-card" style="border-style: dashed; opacity: 0.7;">
+                <h3>Weekend Special</h3>
+                <p>Coming soon! Stay tuned for our Friday lunch deals.</p>
+                <span class="promo-code">STAY TUNED</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
